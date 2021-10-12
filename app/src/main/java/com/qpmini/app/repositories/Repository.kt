@@ -1,5 +1,4 @@
 package com.qpmini.app.repositories
 
-class ChatRepository : Repository{
-
+interface Repository {
 }

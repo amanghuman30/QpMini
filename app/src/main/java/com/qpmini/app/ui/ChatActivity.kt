@@ -1,8 +1,7 @@
-package com.qpmini.app
+package com.qpmini.app.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import com.qpmini.app.databinding.ActivityChatBinding
 
 class ChatActivity : AppCompatActivity() {

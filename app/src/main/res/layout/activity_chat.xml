@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivity"
+    android:background="@color/background"
+    android:label="">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/head_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_user_default_white"
+                app:civ_border_width="1dp"
+                app:civ_border_color="#FF000000"
+                android:layout_marginStart="8dp"
+                android:layout_gravity="center_vertical|start"
+                />
+
+            <TextView
+                android:id="@+id/head_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:layout_gravity="center_vertical"
+                android:padding="8dp"
+                android:text="Title"
+                android:textColor="@color/white"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/appBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/et_chat"
+        />
+
+    <EditText
+        android:id="@+id/et_chat"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/send_button"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/send_et_background"
+        android:cursorVisible="true"
+        android:focusable="true"
+        android:hint="@string/type_your_message_here"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:gravity="start|center_vertical"
+        android:textColor="@color/white"
+        android:textColorHint="#AAA1A1"
+        android:textCursorDrawable="@color/white"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/send_button"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp"
+        android:background="@drawable/send_button_background"
+        android:src="@drawable/ic_send_white" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

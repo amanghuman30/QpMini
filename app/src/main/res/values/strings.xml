@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">QpMini</string>
+    <string name="type_your_message_here">Type a message</string>
 </resources>

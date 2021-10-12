@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="background">#090342</color>
+    <color name="send_text_bubble_color">#157EFB</color>
+    <color name="send_button_background_color">#157EFB</color>
+
 </resources>

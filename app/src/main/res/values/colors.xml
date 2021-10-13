@@ -9,7 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="background">#090342</color>
-    <color name="send_text_bubble_color">#157EFB</color>
     <color name="send_button_background_color">#157EFB</color>
+
+    <color name="left_message_back_color">#E5E5EA</color>
+    <color name="send_text_bubble_color">#157EFB</color>
 
 </resources>

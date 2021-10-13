@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:padding="8dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/left_user_image"
+        android:layout_width="@dimen/chat_img_left_width"
+        android:layout_height="@dimen/chat_img_left_height"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_user_default_white"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/msg_container"
+        />
+
+    <RelativeLayout
+        android:id="@+id/msg_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/left_user_image"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/tv_chat_received"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/left_message_text_background"
+            android:maxWidth="@dimen/left_msg_max_width"
+            android:padding="14dp"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_left_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:visibility="invisible"
+            android:background="@color/left_message_back_color"
+            app:cardCornerRadius="@dimen/left_msg_corner_radius">
+
+            <ImageView
+                android:id="@+id/iv_chat_received"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="@dimen/left_msg_max_width"
+                android:maxHeight="@dimen/left_msg_max_height"
+                />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_chat_time_received"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/msg_container"
+        app:layout_constraintTop_toTopOf="@+id/msg_container"
+        app:layout_constraintBottom_toBottomOf="@+id/msg_container"
+        android:gravity="start"
+        android:layout_marginStart="7dp"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:alpha="0.5"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

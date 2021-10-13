@@ -16,6 +16,6 @@ interface UserDao {
     suspend fun insertParticipant(user: User) : Long
 
     @Query("Select * from users where id=:userId")
-    fun getUser(userId : UUID) : LiveData<User>
+    suspend fun getUser(userId : UUID) : User
 
 }

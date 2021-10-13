@@ -14,8 +14,8 @@ interface ChatDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertChat(chat: Chats) : Long
 
-    @Query("Select * from chats where participantId=:userId")
-    fun getChat(userId : UUID) : LiveData<Chats>
+    @Query("Select * from chats")
+    suspend fun getChat() : List<Chats>
 
     //Insert/Get Messages
     @Insert(onConflict = OnConflictStrategy.REPLACE)

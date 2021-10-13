@@ -3,6 +3,8 @@ package com.qpmini.app.data.di
 import com.qpmini.app.data.source.ChatDataSource
 import com.qpmini.app.data.source.local.ChatLocalDataSource
 import com.qpmini.app.data.source.remote.ChatRemoteDataSource
+import com.qpmini.app.dispatchers.ChatTaskDispatchers
+import com.qpmini.app.dispatchers.TaskDispatchers
 import com.qpmini.app.repositories.ChatRepository
 import com.qpmini.app.repositories.Repository
 import dagger.Binds
@@ -28,18 +30,22 @@ object AppModule {
     @Provides
     @Singleton
     @LocalSource
-    fun provideLocalDatSource() : ChatDataSource = ChatLocalDataSource()
+    fun providesLocalDatSource() : ChatDataSource = ChatLocalDataSource()
 
     @Provides
     @Singleton
     @RemoteSource
-    fun provideRemoteDatSource() : ChatDataSource = ChatRemoteDataSource()
+    fun providesRemoteDatSource() : ChatDataSource = ChatRemoteDataSource()
 
     @Provides
     @Singleton
-    fun provideChatRepository(
+    fun providesChatRepository(
         @LocalSource localDataSource: ChatDataSource,
         @RemoteSource remoteSource: ChatDataSource
     ) : Repository = ChatRepository(localDataSource, remoteSource)
+
+    @Provides
+    @Singleton
+    fun providesTaskDispatchers() : TaskDispatchers = ChatTaskDispatchers()
 
 }

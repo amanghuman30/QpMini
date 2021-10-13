@@ -10,5 +10,6 @@ import java.util.*
 data class Chats(
     @PrimaryKey(autoGenerate = true)
     var id : Int,
-    var participantId : UUID
+    var participantId : UUID,
+    var creatorId : UUID
 )

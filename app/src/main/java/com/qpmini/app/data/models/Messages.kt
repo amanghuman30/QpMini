@@ -2,6 +2,7 @@ package com.qpmini.app.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.qpmini.app.util.MessageType
 import java.util.*
 
 @Entity(
@@ -9,10 +10,10 @@ import java.util.*
 )
 data class Messages(
     @PrimaryKey(autoGenerate = true)
-    var id : Int,
+    var id : Int?,
     var chatId : Int,
     var senderId : UUID,
-    var messageType : String,
+    var messageType : MessageType,
     var messageBody : String,
     var timestamp : Date
 )

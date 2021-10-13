@@ -1,11 +1,14 @@
 package com.qpmini.app.data.source.local
 
+import android.os.Message
 import androidx.lifecycle.LiveData
+import com.qpmini.app.data.models.ChatResponse
 import com.qpmini.app.data.models.Chats
 import com.qpmini.app.data.models.Messages
 import com.qpmini.app.data.models.User
 import com.qpmini.app.data.source.ChatDataSource
 import com.qpmini.app.util.Resource
+import retrofit2.Response
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -33,6 +36,10 @@ class ChatLocalDataSource @Inject constructor(
 
     override suspend fun saveMessage(message: Messages) {
         db.getChatDao().insertMessage(message)
+    }
+
+    override suspend fun sendMessage(userId: String, message: String) : Response<ChatResponse> {
+        TODO("Not yet implemented")
     }
 
     override suspend fun getCurrentChatUser(id : UUID): Resource<User?> {

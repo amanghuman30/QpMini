@@ -3,6 +3,7 @@ package com.qpmini.app.repositories
 import androidx.lifecycle.LiveData
 import com.qpmini.app.data.di.LocalSource
 import com.qpmini.app.data.di.RemoteSource
+import com.qpmini.app.data.models.ChatResponse
 import com.qpmini.app.data.models.Chats
 import com.qpmini.app.data.models.Messages
 import com.qpmini.app.data.models.User
@@ -45,5 +46,9 @@ class ChatRepository (
 
     override suspend fun saveMessage(messages: Messages) {
         localDataSource.saveMessage(messages)
+    }
+
+    override suspend fun sendMessage(userId: String, messages: String) : Response<ChatResponse> {
+        return remoteDataSource.sendMessage(userId, messages)
     }
 }

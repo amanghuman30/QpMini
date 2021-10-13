@@ -10,13 +10,6 @@ import java.util.*
 @Dao
 interface ChatDao {
 
-    //Insert/Get Users
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertParticipant(user: User) : Long
-
-    @Query("Select * from users where id=:userId")
-    fun getUser(userId : UUID) : LiveData<User>
-
     //Insert/Get Chats
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertChat(chat: Chats) : Long

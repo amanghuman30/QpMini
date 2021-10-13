@@ -25,6 +25,12 @@ class RetrofitBuilder {
                 .build()
         }
 
-    }
+        val getUserApi by lazy {
+            retrofit.create(UserApi::class.java)
+        }
 
+        val getChatApi by lazy {
+            retrofit.create(ChatApi::class.java)
+        }
+    }
 }

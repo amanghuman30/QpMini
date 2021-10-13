@@ -14,6 +14,8 @@ import com.qpmini.app.data.models.User
 @TypeConverters(UUIDConverter::class, DateConverter::class, MessageTypeConverter::class)
 abstract class ChatDatabase : RoomDatabase(){
 
+    abstract fun getUserDao() : UserDao
+
     abstract fun getChatDao() : ChatDao
 
 }

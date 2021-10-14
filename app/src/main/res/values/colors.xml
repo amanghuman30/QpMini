@@ -13,5 +13,6 @@
 
     <color name="left_message_back_color">#E5E5EA</color>
     <color name="send_text_bubble_color">#157EFB</color>
+    <color name="message_et_hint_color">#AAA1A1</color>
 
 </resources>

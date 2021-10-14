@@ -3,4 +3,5 @@
     <string name="type_your_message_here">Type a message</string>
     <string name="error_fetching_user">Error fetching user</string>
     <string name="no_internet_connection">No internet connection</string>
+    <string name="error_sending_msg">"Error sending message!"</string>
 </resources>

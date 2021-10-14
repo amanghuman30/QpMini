@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="chat_img_left_height">42dp</dimen>
-    <dimen name="chat_img_left_width">42dp</dimen>
-    <dimen name="head_img_height">48dp</dimen>
-    <dimen name="head_img_width">48dp</dimen>
+    <dimen name="chat_img_left_height">36dp</dimen>
+    <dimen name="chat_img_left_width">36dp</dimen>
+    <dimen name="head_img_height">42dp</dimen>
+    <dimen name="head_img_width">42dp</dimen>
     <dimen name="left_msg_max_width">270dp</dimen>
     <dimen name="left_msg_max_height">270dp</dimen>
     <dimen name="left_msg_corner_radius">30dp</dimen>

@@ -1,6 +1,7 @@
 package com.qpmini.app.data.source.remote
 
 import androidx.lifecycle.LiveData
+import com.google.gson.Gson
 import com.qpmini.app.api.RetrofitBuilder
 import com.qpmini.app.data.models.ChatResponse
 import com.qpmini.app.data.models.Chats
@@ -46,7 +47,7 @@ class ChatRemoteDataSource : ChatDataSource{
         TODO("Not yet implemented")
     }
 
-    override suspend fun getMessages(id : Int): LiveData<List<Messages>> {
+    override suspend fun getMessages(id : Int): List<Messages> {
         TODO("Not yet implemented")
     }
 
@@ -54,7 +55,7 @@ class ChatRemoteDataSource : ChatDataSource{
         TODO("Not yet implemented")
     }
 
-    override suspend fun saveChat(chats: Chats) {
+    override suspend fun saveChat(chats: Chats) : Long {
         TODO("Not yet implemented")
     }
 

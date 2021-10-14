@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 interface UserApi {
 
-    @GET("/profile/{profileId}")
+    @GET("candidate/profile/{profileId}")
     suspend fun getUser(@Path("profileId") userId: String): Response<User>
 
 }

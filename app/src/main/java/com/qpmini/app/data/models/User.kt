@@ -10,6 +10,6 @@ import java.util.*
 data class User(
     @PrimaryKey(autoGenerate = false)
     val id: UUID,
-    val avatarURL: String? = null,
+    val imageURL: String? = null,
     val name: String? = null
 )

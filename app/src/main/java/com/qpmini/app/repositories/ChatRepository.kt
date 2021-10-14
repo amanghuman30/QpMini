@@ -32,7 +32,7 @@ class ChatRepository (
         return remoteDataSource.getCurrentChatUser(id)
     }
 
-    override suspend fun getMessages(id: Int): LiveData<List<Messages>> {
+    override suspend fun getMessages(id: Int): List<Messages> {
         return localDataSource.getMessages(id)
     }
 
@@ -40,8 +40,8 @@ class ChatRepository (
         localDataSource.saveUser(user)
     }
 
-    override suspend fun saveChat(chats: Chats) {
-        localDataSource.saveChat(chats)
+    override suspend fun saveChat(chats: Chats) : Long{
+        return localDataSource.saveChat(chats)
     }
 
     override suspend fun saveMessage(messages: Messages) {

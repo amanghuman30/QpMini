@@ -17,11 +17,11 @@ interface Repository {
 
     suspend fun getUserFromRemote(id : UUID) : Resource<User?>
 
-    suspend fun getMessages(id : Int) : LiveData<List<Messages>>
+    suspend fun getMessages(id : Int) : List<Messages>
 
     suspend fun saveUser(user: User)
 
-    suspend fun saveChat(chats: Chats)
+    suspend fun saveChat(chats: Chats) : Long
 
     suspend fun saveMessage(messages: Messages)
 

@@ -8,8 +8,9 @@ import java.util.*
     tableName = "chats"
 )
 data class Chats(
-    @PrimaryKey(autoGenerate = true)
-    var id : Int?,
     var participantId : UUID,
     var creatorId : UUID
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id : Int = 0
+}

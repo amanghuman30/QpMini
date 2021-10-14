@@ -12,9 +12,9 @@ import java.util.*
 interface ChatDataSource {
     suspend fun getCurrentChatUser(id : UUID): Resource<User?>
     suspend fun getChats(): Resource<List<Chats>>
-    suspend fun getMessages(id : Int) : LiveData<List<Messages>>
+    suspend fun getMessages(id : Int) : List<Messages>
     suspend fun saveUser(user: User)
-    suspend fun saveChat(chats: Chats)
+    suspend fun saveChat(chats: Chats) : Long
     suspend fun saveMessage(messages: Messages)
     suspend fun sendMessage(userId : String, message : String) : Response<ChatResponse>
 }

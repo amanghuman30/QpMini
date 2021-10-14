@@ -1,6 +1,7 @@
 package com.qpmini.app.viewmodels
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.*
 import com.qpmini.app.R
 import com.qpmini.app.data.models.ChatResponse
@@ -92,7 +93,12 @@ class ChatViewModel @Inject constructor(
                             _users.postValue(Resource.Success(user))
                             handleUserDbSave(user)
                         } else {
-                            _users.postValue(Resource.Error("${it.message}"))
+                            val error = if(it.message != null && it.message.isNotEmpty()) {
+                                it.message
+                            } else{
+                                context.getString(R.string.error_fetching_user)
+                            }
+                            _users.postValue(Resource.Error(error))
                         }
                     }
                 } else _users.postValue(Resource.Error(context.getString(R.string.no_internet_connection), null))
@@ -105,7 +111,8 @@ class ChatViewModel @Inject constructor(
      */
     private fun fetchMessages(chatId : Int) {
         viewModelScope.launch(taskDispatchers.io()) {
-            _messages.postValue(chatRepository.getMessages(chatId).value)
+            Log.e("fetching db messages","chat : $chatId")
+            _messages.postValue(chatRepository.getMessages(chatId))
         }
     }
 
@@ -118,8 +125,11 @@ class ChatViewModel @Inject constructor(
         viewModelScope.launch {
             chatRepository.saveUser(user)
 
-            val chat = Chats(null, participantId = user.id, creatorId = UUID.randomUUID())
-            chatRepository.saveChat(chat)
+            val chat = Chats( participantId = user.id, creatorId = UUID.randomUUID())
+
+            chatId = chatRepository.saveChat(chat).toInt()
+            creatorId = chat.creatorId
+            participantId = chat.participantId
         }
     }
 
@@ -134,34 +144,35 @@ class ChatViewModel @Inject constructor(
         if (networkHelper.isNetworkConnected()) {
             viewModelScope.launch(taskDispatchers.io()) {
                 //temporarily save message in list
-                val currentTime = Calendar.getInstance().time
-                val sMessage = Messages(
-                    id = null,
-                    chatId = chatId!!,
-                    senderId = creatorId,
-                    messageType = MessageType.TEXT,
-                    messageBody = message,
-                    timestamp = currentTime)
+                val sMessage = createMessage(
+                    chatId!!,
+                    creatorId,
+                    MessageType.TEXT,
+                    message,
+                )
 
-                val tempList = _messages.value?.toMutableList()
-                tempList?.add(sMessage)
+                val tempList = _messages.value?.let {
+                    it.toMutableList()
+                }?: mutableListOf()
+                tempList.add(sMessage)
                 _messages.postValue(tempList)
 
+                //Send message over api
                 val response = chatRepository.sendMessage(participantId.toString(), message)
                 if(response.isSuccessful) {
                     _sendMessageStatus.postValue(Resource.Success(""))
                     saveMessagesInDB(sMessage,response.body())
                 } else {
-                    _sendMessageStatus.postValue(Resource.Error(response.message(), null))
+                    val error = if(response.message().isNotEmpty()) {
+                        response.message()
+                    } else{
+                        context.getString(R.string.error_sending_msg)
+                    }
+                    _sendMessageStatus.postValue(Resource.Error(error, null))
                 }
             }
         } else {
             _sendMessageStatus.postValue(Resource.Error(context.getString(R.string.no_internet_connection), null))
-        }
-
-        //refresh message list from db
-        chatId?.let {
-            fetchMessages(it)
         }
     }
 
@@ -174,19 +185,39 @@ class ChatViewModel @Inject constructor(
                 //save received message
                 receivedMessage?.let {
                     if(it.body.isNotEmpty() && it.type.isNotEmpty()) {
-                        val rTime = Calendar.getInstance().time
-                        val rMessage = Messages(
-                            id = null,
-                            chatId = chatId!!,
-                            senderId = participantId,
-                            messageType = MessageType.valueOf(it.type),
-                            messageBody = it.body,
-                            timestamp = rTime)
-                        chatRepository.saveMessage(rMessage)
+                        var mType = MessageType.TEXT
+                        for (type in MessageType.values()) {
+                            if(type.type == it.type) {
+                                mType = type
+                                break
+                            }
+                        }
+                        chatRepository.saveMessage(createMessage(
+                            chatId!!,
+                            participantId,
+                            mType,
+                            it.body
+                        ))
                     }
+                }
+                //refresh message list from db
+                chatId?.let {
+                    fetchMessages(it)
                 }
             }
         }
+    }
+
+    /**
+     * Returns Message object
+    * */
+    private fun createMessage(chatId: Int, senderId : UUID, messageType: MessageType,body : String) : Messages {
+        return Messages(
+            chatId = chatId,
+            senderId = senderId,
+            messageType = messageType,
+            messageBody = body,
+            timestamp = Calendar.getInstance().time)
     }
 
 }

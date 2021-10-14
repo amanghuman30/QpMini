@@ -1,6 +1,6 @@
 package com.qpmini.app.util
 
-enum class MessageType (type : String) {
+enum class MessageType (val type : String) {
     TEXT("text"),
     IMAGE("image"),
     VIDEO("video"),

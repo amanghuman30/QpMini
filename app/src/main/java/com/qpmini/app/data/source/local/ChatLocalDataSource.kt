@@ -14,7 +14,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ChatLocalDataSource @Inject constructor(
+class ChatLocalDataSource (
     private val db : ChatDatabase
 ) : ChatDataSource {
 
@@ -22,7 +22,7 @@ class ChatLocalDataSource @Inject constructor(
         return Resource.Success(db.getChatDao().getChat())
     }
 
-    override suspend fun getMessages(id : Int): LiveData<List<Messages>> {
+    override suspend fun getMessages(id : Int): List<Messages> {
         return db.getChatDao().getMessagesWithChatId(id)
     }
 
@@ -30,8 +30,8 @@ class ChatLocalDataSource @Inject constructor(
         db.getUserDao().insertParticipant(user)
     }
 
-    override suspend fun saveChat(chat: Chats) {
-        db.getChatDao().insertChat(chat)
+    override suspend fun saveChat(chat: Chats) : Long {
+        return db.getChatDao().insertChat(chat)
     }
 
     override suspend fun saveMessage(message: Messages) {

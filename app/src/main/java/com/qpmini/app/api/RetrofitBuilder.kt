@@ -1,6 +1,7 @@
 package com.qpmini.app.api
 
 import com.qpmini.app.util.BASE_URL
+import com.qpmini.app.util.EmptyConverterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -20,6 +21,7 @@ class RetrofitBuilder {
 
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .addConverterFactory(EmptyConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

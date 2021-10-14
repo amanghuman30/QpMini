@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/toolbar"
             android:minHeight="?attr/actionBarSize"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+            android:background="@color/purple_500"
+            android:theme="@style/Theme.QpMini.Toolbar">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/head_image"
@@ -41,7 +42,6 @@
                 android:maxLines="1"
                 android:layout_gravity="center_vertical"
                 android:padding="8dp"
-                android:text="Title"
                 android:textColor="@color/white"
                 />
 
@@ -77,9 +77,9 @@
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
         android:gravity="start|center_vertical"
-        android:textColor="@color/white"
-        android:textColorHint="#AAA1A1"
-        android:textCursorDrawable="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/message_et_hint_color"
+        android:textCursorDrawable="@color/black"
         android:textSize="18sp" />
 
     <ImageView

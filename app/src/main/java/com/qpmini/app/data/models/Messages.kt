@@ -9,11 +9,13 @@ import java.util.*
     tableName = "messages"
 )
 data class Messages(
-    @PrimaryKey(autoGenerate = true)
-    var id : Int?,
     var chatId : Int,
     var senderId : UUID,
     var messageType : MessageType,
     var messageBody : String,
     var timestamp : Date
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id : Int = 0
+}
+

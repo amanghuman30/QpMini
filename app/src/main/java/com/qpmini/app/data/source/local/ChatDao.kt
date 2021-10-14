@@ -22,5 +22,5 @@ interface ChatDao {
     suspend fun insertMessage(messages: Messages) : Long
 
     @Query("Select * from messages where chatId=:chatId")
-    fun getMessagesWithChatId(chatId : Int) : LiveData<List<Messages>>
+    fun getMessagesWithChatId(chatId : Int) : List<Messages>
 }

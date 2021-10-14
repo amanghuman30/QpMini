@@ -11,7 +11,7 @@ import retrofit2.http.Path
 
 interface ChatApi {
 
-    @POST("/chat/{profileId}")
+    @POST("candidate/chat/{profileId}")
     suspend fun sendMessage(@Path("profileId") userId: String, @Body requestBody: RequestBody): Response<ChatResponse>
 
 }
